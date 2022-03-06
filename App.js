@@ -8,7 +8,6 @@ import  HomeScreen  from './screens/HomeScreen'
 import MapScreen from './screens/MapScreen';
 import EatsScreen from './screens/EatsScreen';
 
-
 // Stack navigation
 const Stack = createNativeStackNavigator()
 
