@@ -1,7 +1,7 @@
 import { StyleSheet, View, Text, Image,  SafeAreaView } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
-import NavOptions from './components/NavOptions'
+import NavOptions from '../components/NavOptions'
 // 'react-native-web' doesn't work, import directly from 'react-native'
 // import { SafeAreaView } from 'react-native-web'
 
