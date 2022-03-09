@@ -14,7 +14,6 @@ const Stack = createNativeStackNavigator()
 // Setup Redux 
 export default function App() {
   return (
-   
       <Provider store={store}>
         <NavigationContainer>
           <SafeAreaProvider>

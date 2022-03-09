@@ -3,6 +3,9 @@ import React from 'react'
 import tw from 'twrnc'
 import { Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
+// useSelect gives us access to selectOrigin - origin's state
+import { useSelector } from 'react-redux'
+import { selectOrigin } from '../slices/navSlice';
 // "./images/uber-icon.jpeg"
 // image: "https://links.papareact.com/3pn",
 // image: "https://links.papareact.com/28w",
@@ -26,6 +29,7 @@ const data = [
 
 const NavOptions = () => {
     const navigation = useNavigation()
+    const origin = useSelector(selectOrigin)
   return (
     <FlatList 
         data={ data }
@@ -34,8 +38,11 @@ const NavOptions = () => {
         renderItem={({ item }) => (
             <TouchableOpacity 
                 onPress={() => navigation.navigate(item.screen)}
-                style={tw`p-2 pl-6 pb-8 pt-4 m-2 bg-gray-200 w-40 rounded-lg shadow-sm`}>
-                <View>
+                style={tw`p-2 pl-6 pb-8 pt-4 m-2 bg-gray-200 w-40 rounded-lg shadow-sm`}
+                disabled={!origin}
+                >
+                <View style={tw`${!origin && "opacity-40"}`}>
+                    {/* {console.log('navOptions', origin)} */}
                     <Image
                         style={{
                             width: 120, height: 120, resizeMode: 'contain'
