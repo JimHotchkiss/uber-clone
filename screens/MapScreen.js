@@ -10,21 +10,31 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StackActions } from '@react-navigation/native'
 // import NavigateCard
 import NavigateCard from '../components/NavigateCard'
+import RideOptionsCard from '../components/RideOptionsCard'
 
 const MapScreen = () => {
   const origin = useSelector(selectOrigin)
   const Stack = createNativeStackNavigator()
   return (
     <View>
-      {console.log('mapScreen', origin)}
+      {/* {console.log('mapScreen', origin)} */}
       <View style={tw`h-1/2`}>
         <Map/>
       </View>
+
       <View style={tw`h-1/2 `}>
         <Stack.Navigator>
           <Stack.Screen 
                   name="NavigateCard" 
                   component={NavigateCard} 
+                  options={{
+                    headerShown: false,
+                  }}/>
+
+        {/* Ride Options Card */}
+        <Stack.Screen 
+                  name="RideOptionsCard" 
+                  component={RideOptionsCard} 
                   options={{
                     headerShown: false,
                   }}/>
