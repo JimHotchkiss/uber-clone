@@ -42,7 +42,7 @@ const NavOptions = () => {
                 disabled={!origin}
                 >
                 <View style={tw`${!origin && "opacity-40"}`}>
-                    {/* {console.log('navOptions', origin)} */}
+                    {/* {console.log('navOptions', item)} */}
                     <Image
                         style={{
                             width: 120, height: 120, resizeMode: 'contain'

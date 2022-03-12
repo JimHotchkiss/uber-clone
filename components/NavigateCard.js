@@ -1,4 +1,4 @@
-import { View, KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, Platform, TouchableWithoutFeedback, Button, Keyboard } from 'react-native'
+import { View, SafeAreaView, StyleSheet, Text } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 // import store 
@@ -9,8 +9,9 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { GOOGLE_MAPS_APIKEY } from '@env'
 // import dispatch and actions from Redux
 import { useDispatch } from 'react-redux';
-import { setDestination, setOrigin } from '../slices/navSlice';
-import { KeyboardAwareFlatList, KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { setDestination } from '../slices/navSlice';
+// import navigation 
+import { useNavigation } from '@react-navigation/native'
 
 
 
@@ -21,6 +22,8 @@ const NavigateCard = () => {
     const dispatch = useDispatch()
     const today = new Date()
     const hour = today.getHours()
+    const navigation = useNavigation()
+
 
   return (
        <SafeAreaView style={tw`bg-white flex-1`}>
@@ -34,7 +37,7 @@ const NavigateCard = () => {
           <View style={tw`border-t border-gray-200 flex-shrink`}>
             <View>
               <GooglePlacesAutocomplete
-                //  nearbyPlacesAPI='GooglePlacesSearch'
+                nearbyPlacesAPI='GooglePlacesSearch'
                 debounce={400}
                 placeholder="Where to?"
                 styles={toInputBoxStyles}
@@ -49,8 +52,7 @@ const NavigateCard = () => {
                     location: details.geometry.location,
                     description: data.description
                   }))
-
-                  dispatch(setDestination(null))
+                  navigation.navigate('RideOptionsCard')
                 }}
                 fetchDetails={true}
                 returnKeyType={"search"}

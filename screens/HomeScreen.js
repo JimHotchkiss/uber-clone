@@ -8,7 +8,6 @@ import { GOOGLE_MAPS_APIKEY } from '@env'
 import { useDispatch } from 'react-redux';
 // import our actions from our slices
 import { setDestination, setOrigin } from '../slices/navSlice';
-import { setUseProxies } from 'immer';
 // 'react-native-web' doesn't work, import directly from 'react-native'
 // import { SafeAreaView } from 'react-native-web'
 
@@ -25,9 +24,7 @@ const HomeScreen = () => {
             uri:"https://links.papareact.com/gzs",
           }}
         />
-
         {/* Autocomplete functionality */}
-
         <GooglePlacesAutocomplete
           styles={{
             container: {
@@ -58,7 +55,7 @@ const HomeScreen = () => {
           debounce={400}
           placeholder="Where From?"
         />
-
+        {/* NavOptions is self closing */}
         <NavOptions />
       </View>
     </SafeAreaView>
