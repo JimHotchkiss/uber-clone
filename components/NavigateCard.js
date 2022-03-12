@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, SafeAreaView, KeyboardAvoidingView } from 'react-native'
+import { View, KeyboardAvoidingView, SafeAreaView, StyleSheet, Text, Platform, TouchableWithoutFeedback, Button, Keyboard } from 'react-native'
 import React from 'react'
 import tw from 'twrnc'
 // import store 
@@ -10,6 +10,10 @@ import { GOOGLE_MAPS_APIKEY } from '@env'
 // import dispatch and actions from Redux
 import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice';
+import { KeyboardAwareFlatList, KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+
+
 
 
 const NavigateCard = () => {
@@ -19,15 +23,10 @@ const NavigateCard = () => {
     const hour = today.getHours()
 
   return (
-    <SafeAreaView style={tw`bg-white flex-1`}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : null}
-   
-      >
-        <View>
+       <SafeAreaView style={tw`bg-white flex-1`}>
           <Text style={
             tw`text-center py-5 text-xl`
-          }>{
+            }>{
             hour >= 18 ? 'Good Evening, ' :
             hour >= 12 ? 'Good Afternoon, ' :
             'Good Morning, ' } Jimmy
@@ -45,28 +44,21 @@ const NavigateCard = () => {
                   language: 'en'
                 }}
 
-              onPress={(data, details = null) => {
-                dispatch(setDestination({
-                  location: details.geometry.location,
-                  description: data.description
-                }))
+                onPress={(data, details = null) => {
+                  dispatch(setDestination({
+                    location: details.geometry.location,
+                    description: data.description
+                  }))
 
-                dispatch(setDestination(null))
-              }}
-              fetchDetails={true}
-              returnKeyType={"search"}
-              
-              minLength={2}
-              
-            
-            />
-
+                  dispatch(setDestination(null))
+                }}
+                fetchDetails={true}
+                returnKeyType={"search"}
+                minLength={2}
+              />
+              </View>
             </View>
-          </View>
-        </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
-    
+        </SafeAreaView>
   )
 }
 
