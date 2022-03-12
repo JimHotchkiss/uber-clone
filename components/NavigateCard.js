@@ -12,6 +12,8 @@ import { useDispatch } from 'react-redux';
 import { setDestination } from '../slices/navSlice';
 // import navigation 
 import { useNavigation } from '@react-navigation/native'
+import NavFavorites from '../components/NavFavorites'
+
 
 
 
@@ -59,6 +61,7 @@ const NavigateCard = () => {
                 minLength={2}
               />
               </View>
+              <NavFavorites />
             </View>
         </SafeAreaView>
   )

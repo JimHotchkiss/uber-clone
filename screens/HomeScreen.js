@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { setDestination, setOrigin } from '../slices/navSlice';
 // 'react-native-web' doesn't work, import directly from 'react-native'
 // import { SafeAreaView } from 'react-native-web'
-
+import NavFavorites from '../components/NavFavorites';
 const HomeScreen = () => {
   const dispatch = useDispatch();
   return (
@@ -57,6 +57,7 @@ const HomeScreen = () => {
         />
         {/* NavOptions is self closing */}
         <NavOptions />
+        <NavFavorites />
       </View>
     </SafeAreaView>
   )
