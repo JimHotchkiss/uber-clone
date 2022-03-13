@@ -11,6 +11,8 @@ import { StackActions } from '@react-navigation/native'
 // import NavigateCard
 import NavigateCard from '../components/NavigateCard'
 import RideOptionsCard from '../components/RideOptionsCard'
+import NavFavorites from '../components/NavFavorites'
+
 
 const MapScreen = () => {
   const origin = useSelector(selectOrigin)

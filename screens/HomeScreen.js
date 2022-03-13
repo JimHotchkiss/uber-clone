@@ -1,18 +1,23 @@
-import { StyleSheet, View, Text, Image,  SafeAreaView } from 'react-native'
-import React from 'react'
+import { StyleSheet, View, Image,  SafeAreaView } from 'react-native'
+import { React } from 'react'
 import tw from 'twrnc'
 import NavOptions from '../components/NavOptions'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 // import Google api key
 import { GOOGLE_MAPS_APIKEY } from '@env'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import our actions from our slices
-import { setDestination, setOrigin } from '../slices/navSlice';
+import { setDestination, setOrigin, selectDestination, selectOrigin } from '../slices/navSlice';
 // 'react-native-web' doesn't work, import directly from 'react-native'
 // import { SafeAreaView } from 'react-native-web'
 import NavFavorites from '../components/NavFavorites';
+
+
 const HomeScreen = () => {
   const dispatch = useDispatch();
+  const selectedOrigin = useSelector(selectOrigin)
+  const selectedDestination = useSelector(selectDestination)
+
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5`}>
@@ -35,7 +40,6 @@ const HomeScreen = () => {
             }
           }} 
           onPress={(data, details = null) => {
-            // console.log(details.geometry.location)
             dispatch(setOrigin({
               location: details.geometry.location,
               description: data.description
