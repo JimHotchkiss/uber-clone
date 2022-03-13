@@ -49,7 +49,7 @@ const NavFavorites = () => {
         renderItem={({ item: { location, lat, lng, icon, description} }) => (
             <TouchableOpacity 
                 style={tw`flex-row items-center p-5`}
-                onPress={(data, details = null) => {
+                onPress={() => {
                     if (!originCheck) {
                         dispatch(setOrigin({
                             location: {"lat": lat, "lng": lng},

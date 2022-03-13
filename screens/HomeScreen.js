@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image,  SafeAreaView } from 'react-native'
+import { StyleSheet, View, Image, Text, SafeAreaView } from 'react-native'
 import { React } from 'react'
 import tw from 'twrnc'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -21,6 +21,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5`}>
+        {console.log(selectedOrigin, selectedDestination)}
         <Image
           style={{
             width: 100, height: 100, resizeMode: 'contain'
@@ -29,6 +30,9 @@ const HomeScreen = () => {
             uri:"https://links.papareact.com/gzs",
           }}
         />
+        {/* { selectedOrigin && selectedDestination ?  <Text style={tw`ml-auto`}>
+          New search
+        </Text> : null} */}
         {/* Autocomplete functionality */}
         <GooglePlacesAutocomplete
           styles={{
