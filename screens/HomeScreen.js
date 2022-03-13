@@ -1,7 +1,6 @@
 import { StyleSheet, View, Image,  SafeAreaView } from 'react-native'
 import { React } from 'react'
 import tw from 'twrnc'
-import NavOptions from '../components/NavOptions'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 // import Google api key
 import { GOOGLE_MAPS_APIKEY } from '@env'
@@ -10,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setDestination, setOrigin, selectDestination, selectOrigin } from '../slices/navSlice';
 // 'react-native-web' doesn't work, import directly from 'react-native'
 // import { SafeAreaView } from 'react-native-web'
+import NavOptions from '../components/NavOptions'
 import NavFavorites from '../components/NavFavorites';
 
 

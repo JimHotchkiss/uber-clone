@@ -35,6 +35,7 @@ const Map = () => {
             longitudeDelta: 0.005,
         }}
       >
+        {console.log('destination 1,', destination)}
         {origin && destination && (
           <MapViewDirections
             origin={origin.description}

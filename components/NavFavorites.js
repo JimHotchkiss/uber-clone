@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet, FlatList, TouchableOpacity} from 'react-native'
-import React from 'react'
+import { React } from 'react'
 import tw from 'twrnc'
 import { Icon } from 'react-native-elements'
 import { useSelector, useDispatch } from 'react-redux'
@@ -11,28 +11,31 @@ const data = [
     {
         id: "123",
         icon: "home",
-        location: "Home",
+        location: "79 Valley Rd, San Anselmo, CA 94960",
         lat: 37.9908772, 
         lng: -122.5829394,
-        destination: "79 Valley Rd, San Anselmo, CA 94960"
+        description: "Home"
         
     },
     {
         id: "456",
         icon: "briefcase",
-        location: "Work",
+        location: "5900 Optical Crt, San Jose, CA",
         lat: 37.2547933, 
         lng: -121.783474,
-        destination: "5900 Optical Crt, San Jose, CA"
+        description: "Work"
        
     }
     
 ]
 const NavFavorites = () => {
+
+
     const originCheck = useSelector(selectOrigin)
     const destinationCheck = useSelector(selectDestination)
     const dispatch = useDispatch()
     const navigation = useNavigation()
+
 
   return (
       <FlatList 
@@ -43,26 +46,26 @@ const NavFavorites = () => {
                 style={[tw`bg-gray-200`, { height: 0.5 }]}
             />
         )}
-        renderItem={({ item: { location, lat, lng, icon, destination} }) => (
+        renderItem={({ item: { location, lat, lng, icon, description} }) => (
             <TouchableOpacity 
                 style={tw`flex-row items-center p-5`}
                 onPress={(data, details = null) => {
                     if (!originCheck) {
-                        console.log('origin')
                         dispatch(setOrigin({
                             location: {"lat": lat, "lng": lng},
-                            description: location
+                            description: location,
+                            place: description
                           }))
 
                     } else {
-                        console.log('destination')
+                        console.log('destination 2', description)
                         dispatch(setDestination({
                             location: {"lat": lat, "lng": lng},
-                            description: location
+                            description: location,
+                            place: description
                           }))
                     }
                     navigation.navigate('MapScreen')
-                    dispatch(setDestination(null))
                   }}
                 >
                 <Icon
@@ -73,8 +76,8 @@ const NavFavorites = () => {
                     size={18}
                 />
                 <View>
-                    <Text style={tw`font-semibold text-lg`}>{location}</Text>
-                    <Text style={tw`text-gray-500`}>{destination}</Text>
+                    <Text style={tw`font-semibold text-lg`}>{description}</Text>
+                    <Text style={tw`text-gray-500`}>{location}</Text>
                 </View>
             </TouchableOpacity>
         )}
